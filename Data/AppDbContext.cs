@@ -23,7 +23,7 @@ namespace Backcrazyhorse.Data
 
                 modelBuilder.Entity<Region>()
                     .HasMany(r => r.Massives)
-                    .WithOne(m => m.Region)
+                    .WithOne(m => m.Region) 
                     .HasForeignKey(m => m.RegionId);
 
                 modelBuilder.Entity<Massive>()

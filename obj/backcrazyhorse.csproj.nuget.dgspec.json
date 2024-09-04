@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/margaritaborodina/Documents/STUDY/ANGULAR/THE CRAZY HORSE BUTRESS/backcrazyhorse/backcrazyhorse.csproj": {}
+    "/Users/margaritaborodina/Documents/STUDY/ANGULAR/THE CRAZY HORSE BUTRESS/Backcrazyhorse/backcrazyhorse.csproj": {}
   },
   "projects": {
-    "/Users/margaritaborodina/Documents/STUDY/ANGULAR/THE CRAZY HORSE BUTRESS/backcrazyhorse/backcrazyhorse.csproj": {
+    "/Users/margaritaborodina/Documents/STUDY/ANGULAR/THE CRAZY HORSE BUTRESS/Backcrazyhorse/backcrazyhorse.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/margaritaborodina/Documents/STUDY/ANGULAR/THE CRAZY HORSE BUTRESS/backcrazyhorse/backcrazyhorse.csproj",
+        "projectUniqueName": "/Users/margaritaborodina/Documents/STUDY/ANGULAR/THE CRAZY HORSE BUTRESS/Backcrazyhorse/backcrazyhorse.csproj",
         "projectName": "backcrazyhorse",
-        "projectPath": "/Users/margaritaborodina/Documents/STUDY/ANGULAR/THE CRAZY HORSE BUTRESS/backcrazyhorse/backcrazyhorse.csproj",
+        "projectPath": "/Users/margaritaborodina/Documents/STUDY/ANGULAR/THE CRAZY HORSE BUTRESS/Backcrazyhorse/backcrazyhorse.csproj",
         "packagesPath": "/Users/margaritaborodina/.nuget/packages/",
-        "outputPath": "/Users/margaritaborodina/Documents/STUDY/ANGULAR/THE CRAZY HORSE BUTRESS/backcrazyhorse/obj/",
+        "outputPath": "/Users/margaritaborodina/Documents/STUDY/ANGULAR/THE CRAZY HORSE BUTRESS/Backcrazyhorse/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/margaritaborodina/.nuget/NuGet/NuGet.Config"
@@ -48,6 +48,12 @@
               "version": "[8.0.5, )"
             },
             "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[8.0.8, )"
             },
