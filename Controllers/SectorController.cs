@@ -11,7 +11,7 @@ namespace Backcrazyhorse.Controllers
     [Route("api/[controller]")]
     public class SectorController: ControllerBase
     {
-         private readonly AppDbContext _context;
+        private readonly AppDbContext _context;
         public SectorController(AppDbContext context)
         {
             _context = context;
@@ -107,3 +107,4 @@ namespace Backcrazyhorse.Controllers
         
     }
 }
+
