@@ -1,8 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Backcrazyhorse.Data;
+using Backcrazyhorse.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace Backcrazyhorse.Controllers
 {
@@ -22,7 +27,7 @@ namespace Backcrazyhorse.Controllers
         {
             var regions = await _context.Regions
                 .Include(s => s.Massives)
-                .AsNoTracking()
+                //.AsNoTracking()
                 .ToListAsync();
             return Ok(regions);       
         }
@@ -33,8 +38,8 @@ namespace Backcrazyhorse.Controllers
         GetRegion(int id)
             {
                 var region = await _context.Regions
-                .Include(s => s.ClimbingRoutes)
-                .AsNoTracking()
+                .Include(s => s.Massives)
+                //.AsNoTracking()
                 .FirstOrDefaultAsync(s => s.RegionId == id);
 
                 if(region == null)
@@ -53,7 +58,7 @@ namespace Backcrazyhorse.Controllers
                 await _context.SaveChangesAsync();
 
                 return CreatedAtAction(nameof(GetRegion),
-                new{id = region.RegionId}, secregiontor)
+                new{id = region.RegionId}, region);
             }
 
         //PUT
@@ -99,7 +104,7 @@ namespace Backcrazyhorse.Controllers
 
                 private bool RegionExists(int id)
                 {
-                    return _context.Region.Any(s => s.RegionId == id);
+                    return _context.Regions.Any(s => s.RegionId == id);
                 }  
 
 

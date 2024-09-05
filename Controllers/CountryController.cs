@@ -7,15 +7,15 @@ using Backcrazyhorse.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace backcrazyhorse.Controllers
+namespace Backcrazyhorse.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    // api/crazyhorses
-    public class CrazyhorsesController:ControllerBase
+    // api/countrycontroller
+    public class CountryController:ControllerBase
     {
         private readonly AppDbContext _context;
-        public CrazyhorsesController(AppDbContext context)
+        public CountryController(AppDbContext context)
         {
             _context=context;
         }
@@ -27,7 +27,7 @@ namespace backcrazyhorse.Controllers
         {
             var countries = await _context.Countries
                 .Include(c => c.Regions)
-                .AsNoTracking()
+                //.AsNoTracking()
                 .ToListAsync();
             return Ok(countries);
 
@@ -39,7 +39,7 @@ namespace backcrazyhorse.Controllers
         {
                 var country = await _context.Countries
                 .Include(c=> c.Regions)
-                .AsNoTracking()
+                //.AsNoTracking()
                 .FirstOrDefaultAsync(c => c.CountryId == id);
 
                 if(country == null)
@@ -57,7 +57,7 @@ namespace backcrazyhorse.Controllers
             _context.Countries.Add(country);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetCountry), new {id = country.CountryId}, country)
+            return CreatedAtAction(nameof(GetCountry), new {id = country.CountryId}, country);
         }
 
         //PUT

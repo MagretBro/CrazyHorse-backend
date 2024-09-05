@@ -1,7 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Backcrazyhorse.Data;
+using Backcrazyhorse.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Backcrazyhorse.Controllers
 {
@@ -10,55 +15,55 @@ namespace Backcrazyhorse.Controllers
     public class ClimbingRouteController: ControllerBase
     {
         private readonly AppDbContext _context;
-        public climbingrouteController(AppDbContext context)
+        public ClimbingRouteController(AppDbContext context)
         {
             _context = context;
         }
 
         // GET: api/crazyhorses
         [HttpGet]
-                public async Task<ActionResult<IEnumerable<Massive>>> GetClimbingRoutes()
+            public async Task<ActionResult<IEnumerable<Massive>>> GetClimbingRoutes()
         {
             var climbingroutes = await _context.ClimbingRoutes
                 .Include(cr => cr.Sector)
-                .AsNoTracking()
+                //.AsNoTracking()
                 .ToListAsync();
             return Ok(climbingroutes);       
         }
 
+
         //GET: api/crazyhorses/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ClimbingRoute>> 
-        GetClimbingRoute(int id)
-            {
-                var climbingroute = await _context.ClimbingRoutes
-                .Include(cr => cr.Sector)
-                .AsNoTracking()
-                .FirstOrDefaultAsync(cr => cr.ClimbingRouteId == id);
+            public async Task<ActionResult<ClimbingRoute>> GetClimbingRoute(int id)
+        {
+            var climbingroute = await _context.ClimbingRoutes
+            .Include(cr => cr.Sector)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(cr => cr.ClimbingRouteId == id);
 
-                if(climbingroute == null)
-                {
-                    return NotFound();
-                }
-                return Ok(climbingroute);
+            if(climbingroute == null)
+            {
+                return NotFound();
             }
+            return Ok(climbingroute);
+        }
+
 
         //POST: api/climbingroutes
         [HttpPost]
-        public async Task<ActionResult<ClimbingRoute>>
-        CreateClimbingRoute(ClimbingRoute climbingroute)
-            {
-                _context.ClimbingRoutes.Add(climbingroute);
-                await _context.SaveChangesAsync();
+            public async Task<ActionResult<ClimbingRoute>> CreateClimbingRoute(ClimbingRoute climbingroute)
+        {
+            _context.ClimbingRoutes.Add(climbingroute);
+            await _context.SaveChangesAsync();
 
-                return CreatedAtAction(nameof(GetClimbingRoute),
-                new{id = climbingroute.ClimbingRouteId}, climbingroute)
-            }
+            return CreatedAtAction(nameof(GetClimbingRoute),
+            new{id = climbingroute.ClimbingRouteId}, climbingroute);
+        }
+
 
         //PUT
         [HttpPut("{id}")]
-        public async Task<ActionResult>
-        UpdateClimbingRoute(int id, ClimbingRoute climbingroute)
+            public async Task<ActionResult> UpdateClimbingRoute(int id, ClimbingRoute climbingroute)
         {
             if (id != climbingroute.ClimbingRouteId)
             {
@@ -66,40 +71,42 @@ namespace Backcrazyhorse.Controllers
             }
             _context.Entry(climbingroute).State = EntityState.Modified;
 
-            try {
+            try 
+            {
                 await _context.SaveChangesAsync();
             }
+
             catch (DbUpdateConcurrencyException)
-                { if (!ClimbingRouteExists(id))
-                    {
-                        return NotFound();
-                    }
-                    else 
-                    { throw; }
+            { if (!ClimbingRouteExists(id))
+                {
+                    return NotFound();
                 }
-                return NoContent();
+                else 
+                { throw; }
+            }
+            return NoContent();
         }
 
-//DELETE
-                [HttpDelete("{id}")]
-                public async Task<IActionResult> DeleteClimbingRoute(int id)
-                {
-                    var climbingroute = await _context.ClimbingRoutes.FindAsync(id);
-                    if (climbingroute == null)
-                    {
-                        return NotFound();
-                    }
+        //DELETE
+        [HttpDelete("{id}")]
+            public async Task<IActionResult> DeleteClimbingRoute(int id)
+        {
+            var climbingroute = await _context.ClimbingRoutes.FindAsync(id);
+            if (climbingroute == null)
+            {
+                return NotFound();
+            }
 
-                    _context.ClimbingRoutes.Remove(climbingroute);
-                    await _context.SaveChangesAsync();
+            _context.ClimbingRoutes.Remove(climbingroute);
+            await _context.SaveChangesAsync();
 
-                    return NoContent();
-                }
+            return NoContent();
+        }
 
-                private bool ClimbingRouteExists(int id)
-                {
-                    return _context.ClimbingRoute.Any(cr => cr.ClimbingRouteId == id);
-                }  
+        private bool ClimbingRouteExists(int id)
+        {
+            return _context.ClimbingRoutes.Any(c => c.ClimbingRouteId == id);
+        }  
 
 
     }

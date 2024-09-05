@@ -27,8 +27,8 @@ namespace Backcrazyhorse.Controllers
         public async Task<ActionResult<IEnumerable<Massive>>> GetMassives()
         {
             var massives = await _context.Massives
-                .Include(c => c.Sectors)
-                .AsNoTracking()
+                .Include(m => m.Sectors)
+                //.AsNoTracking()
                 .ToListAsync();
             return Ok(massives);        
         }
@@ -38,8 +38,9 @@ namespace Backcrazyhorse.Controllers
         public async Task<ActionResult<Massive>> GetMassive(int id)
             {
                 var massive = await _context.Massives
+                //.Include(m => m.Region)
                 .Include(m => m.Sectors)
-                .AsNoTracking()
+                //.AsNoTracking()
                 .FirstOrDefaultAsync(m => m.MassiveId == id);
 
                 if(massive == null)
@@ -58,7 +59,7 @@ namespace Backcrazyhorse.Controllers
                 await _context.SaveChangesAsync();
 
                 return CreatedAtAction(nameof(GetMassive),
-                new{id = massive.MassiveId}, massive)
+                new{id = massive.MassiveId}, massive);
             }
 
         //PUT

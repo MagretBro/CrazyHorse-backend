@@ -1,3 +1,9 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Backcrazyhorse.Models;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 namespace Backcrazyhorse.Models
@@ -9,7 +15,7 @@ namespace Backcrazyhorse.Models
         public required string Describe { get; set; }
         public int MassiveId  { get; set; }
         public required Massive Massive { get; set; }
-        public required ICollection<ClimbingRoute> ClimbingRoute  { get; set; }
+        public required ICollection<ClimbingRoute> ClimbingRoutes  { get; set; }
 
     }
 }

@@ -1,5 +1,7 @@
 using Backcrazyhorse.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+using Backcrazyhorse.Data;
 
 namespace Backcrazyhorse.Data
 {
@@ -12,29 +14,32 @@ namespace Backcrazyhorse.Data
         public DbSet<Sector> Sectors { get; set; }
         public DbSet<ClimbingRoute> ClimbingRoutes { get; set; }
 
-            protected override void OnModelCreating(ModelBuilder modelBuilder)
-            {
-                base.OnModelCreating(modelBuilder);
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
 
-                modelBuilder.Entity<Country>()
-                    .HasMany(c => c.Regions)
-                    .WithOne(r => r.Country)
-                    .HasForeignKey (r => r.CountryId);
+            modelBuilder.Entity<Country>()
+                .HasMany(c => c.Regions)
+                .WithOne(r => r.Country)
+                .HasForeignKey (r => r.CountryId);
 
-                modelBuilder.Entity<Region>()
-                    .HasMany(r => r.Massives)
-                    .WithOne(m => m.Region) 
-                    .HasForeignKey(m => m.RegionId);
+            modelBuilder.Entity<Region>()
+                .HasMany(r => r.Massives)
+                .WithOne(m => m.Region) 
+                .HasForeignKey(m => m.RegionId);
 
-                modelBuilder.Entity<Massive>()
+            modelBuilder.Entity<Massive>()
                 .HasMany(m => m.Sectors)
                 .WithOne(s => s.Massive)
                 .HasForeignKey(s => s.MassiveId);
 
-                modelBuilder.Entity<Sector>()
-                .HasMany(s => s.ClimbingRoute)
+            modelBuilder.Entity<Sector>()
+                .HasMany(s => s.ClimbingRoutes)
                 .WithOne(cr => cr.Sector)
                 .HasForeignKey(cr => cr.SectorId);
-            }
+
+            modelBuilder.Entity<ClimbingRoute>()
+                .HasMany(c => c.Img);
         }
+    }
 }

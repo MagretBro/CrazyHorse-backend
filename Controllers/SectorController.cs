@@ -1,9 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Backcrazyhorse.Data;
 using Backcrazyhorse.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace Backcrazyhorse.Controllers
 {
@@ -54,7 +58,7 @@ namespace Backcrazyhorse.Controllers
                 await _context.SaveChangesAsync();
 
                 return CreatedAtAction(nameof(GetSector),
-                new{id = sector.SectorId}, sector)
+                new{id = sector.SectorId}, sector);
             }
 
         //PUT
@@ -100,7 +104,7 @@ namespace Backcrazyhorse.Controllers
 
                 private bool SectorExists(int id)
                 {
-                    return _context.Sector.Any(s => s.SectorId == id);
+                    return _context.Sectors.Any(s => s.SectorId == id);
                 }  
 
 
