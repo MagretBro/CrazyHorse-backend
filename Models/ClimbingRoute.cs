@@ -7,8 +7,8 @@ namespace Backcrazyhorse.Models
         public int ClimbingRouteId { get; set; }
         public required string Name { get; set; }
         public required string Describe { get; set; }
-        //public List<string> Images { get; set; } 
-        public List<string> Img { get; set; } = new List<string>();
+        public List<Image> Images { get; set; } = new List<Image>();
+
 
 
         public required string Grade { get; set; } // категория сложности

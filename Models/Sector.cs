@@ -14,8 +14,15 @@ namespace Backcrazyhorse.Models
         public required string Name { get; set; }
         public required string Describe { get; set; }
         public int MassiveId  { get; set; }
-        public required Massive Massive { get; set; }
-        public required ICollection<ClimbingRoute> ClimbingRoutes  { get; set; }
+        public Massive? Massive { get; set; }
+        public ICollection<ClimbingRoute> ClimbingRoutes  { get; set; }
+        public ICollection<Image> Images { get; set; } = new List<Image>();
+
+
+        public Sector()
+        {
+            ClimbingRoutes = new List<ClimbingRoute>(); // Инициализация списка при создании объекта
+        }
 
     }
 }
