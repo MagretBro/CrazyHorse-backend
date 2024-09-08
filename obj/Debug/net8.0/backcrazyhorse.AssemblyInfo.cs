@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("backcrazyhorse")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+069807c07cb2ff627eae71ae4c01a90860069a26")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+01ec4016f4e53def885e611eb7ad090457eeedd4")]
 [assembly: System.Reflection.AssemblyProductAttribute("backcrazyhorse")]
 [assembly: System.Reflection.AssemblyTitleAttribute("backcrazyhorse")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
