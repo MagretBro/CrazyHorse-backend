@@ -52,6 +52,19 @@ namespace Backcrazyhorse.Data
                 .HasForeignKey(i => i.SectorId);
 
 
+           
+            modelBuilder.Entity<Country>().HasData(
+                new Country { CountryId=101010, Name="Thailand" } 
+            );
+
+            modelBuilder.Entity<Region>().HasData(
+                new Region { RegionId=110101000, Name="Chiang Mai", CountryId=101010 } 
+            );
+
+            modelBuilder.Entity<Massive>().HasData(
+                new Massive { MassiveId=111, RegionId=110101000, Name="Crazy Horse Buttress" } 
+            );
+
             modelBuilder.Entity<Sector>().HasData(
                 new Sector { SectorId = 1, Name = "Heart Wall", Describe = "Описание сектора", MassiveId = 111 },
                 new Sector { SectorId = 2, Name = "rooftop", Describe = "Описание сектора", MassiveId = 111 },
@@ -73,10 +86,9 @@ namespace Backcrazyhorse.Data
                 new Sector { SectorId = 18, Name = "Vision", Describe = "Описание сектора", MassiveId = 111 },
                 new Sector { SectorId = 19, Name = "Naam Prik Wall", Describe = "Описание сектора", MassiveId = 111 },
                 new Sector { SectorId = 20, Name = "The Ant Hill", Describe = "Описание сектора", MassiveId = 111 }
-);
+            );
 
-
-            modelBuilder.Entity<ClimbingRoute>().HasData(
+             modelBuilder.Entity<ClimbingRoute>().HasData(
                 new ClimbingRoute { ClimbingRouteId = 100099, Name = "Suud Suud Jai / Put Your Heart Into It", Describe = "Описание трассы", Category = "6b+", Testimonial = "Sport 22m", BoltCount = 14, SectorId = 1 },
                 new ClimbingRoute { ClimbingRouteId = 100100, Name = "Kra Ten Kong Hua Jai / Heartbeat", Describe = "Описание трассы", Category = "6b+", Testimonial = "Sport 18m", BoltCount = 11, SectorId = 1 },
                 new ClimbingRoute { ClimbingRouteId = 100101, Name = "Gam Lang Jai / Spirit, Morale", Describe = "Описание трассы", Category = "6b+", Testimonial = "Sport 18m", BoltCount = 11, SectorId = 1 },

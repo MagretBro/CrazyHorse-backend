@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace backcrazyhorse.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240906115226_AddSectorsData")]
-    partial class AddSectorsData
+    [Migration("20240908112303_AddingSectors")]
+    partial class AddingSectors
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,19 +26,16 @@ namespace backcrazyhorse.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("BoltCount")
+                    b.Property<int?>("BoltCount")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Describe")
                         .IsRequired()
                         .HasColumnType("TEXT");
-
-                    b.Property<string>("Grade")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("Height")
-                        .HasColumnType("REAL");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -46,6 +43,9 @@ namespace backcrazyhorse.Migrations
 
                     b.Property<int>("SectorId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Testimonial")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("ClimbingRouteId");
 
@@ -67,6 +67,13 @@ namespace backcrazyhorse.Migrations
                     b.HasKey("CountryId");
 
                     b.ToTable("Countries");
+
+                    b.HasData(
+                        new
+                        {
+                            CountryId = 101010,
+                            Name = "Thailand"
+                        });
                 });
 
             modelBuilder.Entity("Backcrazyhorse.Models.Image", b =>
@@ -100,18 +107,16 @@ namespace backcrazyhorse.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Describe")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Images")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("RegionId")
+                    b.Property<int?>("RegionId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("MassiveId");
@@ -119,6 +124,14 @@ namespace backcrazyhorse.Migrations
                     b.HasIndex("RegionId");
 
                     b.ToTable("Massives");
+
+                    b.HasData(
+                        new
+                        {
+                            MassiveId = 111,
+                            Name = "Crazy Horse Buttress",
+                            RegionId = 110101000
+                        });
                 });
 
             modelBuilder.Entity("Backcrazyhorse.Models.Region", b =>
@@ -127,11 +140,10 @@ namespace backcrazyhorse.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CountryId")
+                    b.Property<int?>("CountryId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Images")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
@@ -143,6 +155,14 @@ namespace backcrazyhorse.Migrations
                     b.HasIndex("CountryId");
 
                     b.ToTable("Regions");
+
+                    b.HasData(
+                        new
+                        {
+                            RegionId = 110101000,
+                            CountryId = 101010,
+                            Name = "Chiang Mai"
+                        });
                 });
 
             modelBuilder.Entity("Backcrazyhorse.Models.Sector", b =>
@@ -152,7 +172,6 @@ namespace backcrazyhorse.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Describe")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("MassiveId")
@@ -341,9 +360,7 @@ namespace backcrazyhorse.Migrations
                 {
                     b.HasOne("Backcrazyhorse.Models.Region", "Region")
                         .WithMany("Massives")
-                        .HasForeignKey("RegionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RegionId");
 
                     b.Navigation("Region");
                 });
@@ -352,9 +369,7 @@ namespace backcrazyhorse.Migrations
                 {
                     b.HasOne("Backcrazyhorse.Models.Country", "Country")
                         .WithMany("Regions")
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CountryId");
 
                     b.Navigation("Country");
                 });

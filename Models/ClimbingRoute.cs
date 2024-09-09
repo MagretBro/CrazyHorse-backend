@@ -6,10 +6,10 @@ namespace Backcrazyhorse.Models
     {
         public int ClimbingRouteId { get; set; }
         public required string Name { get; set; }
-        public required string Describe { get; set; }
-        public List<Image> Images { get; set; } = new List<Image>();
-        public required string Category { get; set; } // категория сложности
-        public string Testimonial { get; set; } // высота в метрах, другие св-ва
+        public string? Describe { get; set; }
+        public List<Image>? Images { get; set; }
+        public string? Category { get; set; } // категория сложности
+        public string? Testimonial { get; set; } // высота в метрах, другие св-ва
         public int? BoltCount { get; set; } // количество шлямбуров
         
         public int SectorId { get; set; }

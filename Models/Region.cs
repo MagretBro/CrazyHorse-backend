@@ -7,9 +7,9 @@ namespace Backcrazyhorse.Models
     {
         public required int RegionId { get; set; }
         public required string Name { get; set; }
-        public required List<string> Images { get; set; } 
-        public int CountryId { get; set; }
-        public required Country Country { get; set; }
-        public required ICollection<Massive> Massives {get; set; }
+        public List<string>? Images { get; set; } 
+        public int? CountryId { get; set; }
+        public Country? Country { get; set; }
+        public ICollection<Massive>? Massives {get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace Backcrazyhorse.Models
     {
         public int CountryId { get; set; }
         public required string Name { get; set; }
-        public required ICollection<Region> Regions { get; set; }   
+        public ICollection<Region>? Regions { get; set; }   
     }
 
 }

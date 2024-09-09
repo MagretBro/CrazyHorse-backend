@@ -12,17 +12,12 @@ namespace Backcrazyhorse.Models
     public class Sector {
         public required int SectorId { get; set; }
         public required string Name { get; set; }
-        public required string Describe { get; set; }
+        public string? Describe { get; set; }
         public int MassiveId  { get; set; }
         public Massive? Massive { get; set; }
-        public ICollection<ClimbingRoute> ClimbingRoutes  { get; set; }
-        public ICollection<Image> Images { get; set; } = new List<Image>();
+        public ICollection<ClimbingRoute>? ClimbingRoutes  { get; set; }
+        public ICollection<Image>? Images { get; set; } = new List<Image>();
 
-
-        public Sector()
-        {
-            ClimbingRoutes = new List<ClimbingRoute>(); // Инициализация списка при создании объекта
-        }
 
     }
 }
